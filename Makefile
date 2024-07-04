@@ -2,7 +2,7 @@
 # Variables
 
 # Build tools and options
-GCC = gcc
+COMPILER = gcc
 MAIN_FLAGS = -std=c99 -g -O0
 WARNINGS_FLAGS = -Wall -Wextra -Wpedantic -Wduplicated-branches -Wduplicated-cond -Werror=cast-qual -Wconversion -Wsign-conversion -Wlogical-op -Werror
 
@@ -43,19 +43,19 @@ $(FORMATTED_FILES): %.formatted: %
 
 $(EXE_32_STD_ALLOC): $(FORMATTED_FILES)
 	@rm -f $(FORMATTED_FILES)
-	$(GCC) $(FLAGS) $(SOURCES) -o $@ -m32 -D USE_STD_ALLOC
+	$(COMPILER) $(FLAGS) $(SOURCES) -o $@ -m32 -D USE_STD_ALLOC
 
 $(EXE_64_STD_ALLOC): $(FORMATTED_FILES)
 	@rm -f $(FORMATTED_FILES)
-	$(GCC) $(FLAGS) $(SOURCES) -o $@ -m64 -D USE_STD_ALLOC
+	$(COMPILER) $(FLAGS) $(SOURCES) -o $@ -m64 -D USE_STD_ALLOC
 
 $(EXE_32): $(FORMATTED_FILES)
 	@rm -f $(FORMATTED_FILES)
-	$(GCC) $(FLAGS) $(SOURCES) -o $@ -m32
+	$(COMPILER) $(FLAGS) $(SOURCES) -o $@ -m32
 
 $(EXE_64): $(FORMATTED_FILES)
 	@rm -f $(FORMATTED_FILES)
-	$(GCC) $(FLAGS) $(SOURCES) -o $@ -m64
+	$(COMPILER) $(FLAGS) $(SOURCES) -o $@ -m64
 
 $(PASS): %.passed: %-input.txt %-expected.txt  $(EXE_32_STD_ALLOC) $(EXE_64_STD_ALLOC) $(EXE_32) $(EXE_64)
 	@echo "Running test $*..."
