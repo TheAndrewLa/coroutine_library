@@ -3,7 +3,7 @@
 
 # Build tools and options
 COMPILER = gcc
-MAIN_FLAGS = -std=c99 -g -O0
+MAIN_FLAGS = -std=c11 -g -O0
 WARNINGS_FLAGS = -Wall -Wextra -Wpedantic -Wduplicated-branches -Wduplicated-cond -Werror=cast-qual -Wconversion -Wsign-conversion -Wlogical-op -Werror
 
 # Task-specific patch

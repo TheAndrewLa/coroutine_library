@@ -1,29 +1,19 @@
-#pragma once
+// by andrew.la
 
-#include <queue>
-#include <tuple>
+#ifndef LIBRARY_COROUTINE_H
+#define LIBRARY_COROUTINE_H
 
-#include "singleton.h"
+#include <stdint.h>
+#include <stddef.h>
+#include <setjmp.h>
 
-template <typename... Args>
-struct CoroutineManager : Singleton<CoroutineManager<Args...>> {
-    using function_type = std::function<void(Args...)>;
+typedef struct __coroutine_manager {
+    // task queue
+} coroutine_manager;
 
-    template <typename... Ts>
-    void add_task(function_type function, Ts&&... args) {
-        functions_.push(function);
-        args_.emplace(std::forward<Ts>(args)...);
-    }
+typedef struct __coroutine_function {
+    void (*entry) (void*);
+    void* args;
+} coroutine_function;
 
-    void sleep() {
-        // Magic with asm & setjmp & longjmp
-    }
-
-    void execute() {
-        // Magic with asm & setjmp & longjmp
-    }
-
-    private:
-    std::queue<function_type> functions_;
-    std::queue<std::tuple<Args...>> args_;
-};
+#endif
