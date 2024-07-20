@@ -3,17 +3,11 @@
 #ifndef LIBRARY_COROUTINE_H
 #define LIBRARY_COROUTINE_H
 
-#include <stdint.h>
-#include <stddef.h>
-#include <setjmp.h>
+#include "utils.h"
+#include "memory_utils.h"
 
-typedef struct __coroutine_manager {
-    // task queue
-} coroutine_manager;
-
-typedef struct __coroutine_function {
-    void (*entry) (void*);
-    void* args;
-} coroutine_function;
+void coop_add_task(void (*entry) (void*), void* args);
+void coop_sleep();
+void coop_join();
 
 #endif

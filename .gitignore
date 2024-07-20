@@ -3,3 +3,5 @@
 /tests/*-actual-*.txt
 /*.formatted
 *.out
+*.clang-format
+*.s
